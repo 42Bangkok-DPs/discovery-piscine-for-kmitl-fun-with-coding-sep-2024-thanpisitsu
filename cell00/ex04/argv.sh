@@ -5,8 +5,8 @@ for name in "$@"; do
     if [ $i -ge 3 ]; then
         break
     fi
+done
 
-if [ $# -eq 0 ]; then
+if [ $i -eq 0 ]; then
     echo "No arguments supplied"
 fi
-done
