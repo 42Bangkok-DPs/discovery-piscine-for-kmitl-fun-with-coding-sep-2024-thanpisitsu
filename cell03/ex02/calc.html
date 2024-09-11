@@ -27,6 +27,7 @@
             const right = parseInt(document.getElementById('right').value, 10);
 
             if (isNaN(left) || isNaN(right) || left < 0 || right < 0) {
+                alert("Error :(");
                 console.log('Error :(');
                 return;
             }
@@ -44,7 +45,6 @@
                     break;
                 case '/':
                     if (right === 0) {
-                        console.log(right)
                         alert("It’s over 9000!");
                         console.log("It’s over 9000!");
                         return
