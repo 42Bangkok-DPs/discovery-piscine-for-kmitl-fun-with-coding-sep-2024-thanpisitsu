@@ -86,12 +86,14 @@
         }
 
         function loadTasks() {
-            const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+            const cookies = document.cookie.split(';').reduce((acc, cookie) => { 
                 const [name, value] = cookie.split('=').map(c => c.trim());
+                console.log(name)
+                console.log(value)
                 acc[name] = value;
                 return acc;
             }, {});
-
+            console.log(cookies)
             const tasks = JSON.parse(cookies.tasks || "[]").reverse();
             tasks.forEach(task => {
                 const taskDiv = document.createElement('div');
