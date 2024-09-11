@@ -82,18 +82,16 @@
         function saveTasks() {
             const tasks = Array.from(document.getElementsByClassName('task'))
                                .map(task => task.textContent);
-            document.cookie = "tasks = " + JSON.stringify(tasks) + ";path=/";
-            console.log(document.cookie);
+            document.cookie = "tasks=" + JSON.stringify(tasks) + ";path=/";
         }
 
         function loadTasks() {
-            const cookies = document.cookie.split(';').reduce((acc, cookie) => { 
-                const [name, value] = cookie.split(' = ').map(c => c);
-                console.log(name)
-                console.log(value)
+            const cookies = document.cookie.split(';').reduce((acc, cookie) => {
+                const [name, value] = cookie.split('=').map(c => c.trim());
                 acc[name] = value;
                 return acc;
             }, {});
+
             const tasks = JSON.parse(cookies.tasks || "[]").reverse();
             tasks.forEach(task => {
                 const taskDiv = document.createElement('div');
