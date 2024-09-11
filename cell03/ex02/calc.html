@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Calculator</title>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="left" placeholder="Enter left number" min="0">
+        <select id="oper">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+            <option value="%">%</option>
+        </select>
+        <input type="text" id="right" placeholder="Enter right number" min="0">
+        <input type="submit" value="Try me!" onclick="calculate()">
+    </div>
+
+    <script>
+        function calculate() {
+            const left = parseInt(document.getElementById('left').value, 10);
+            const oper = document.getElementById('oper').value;
+            const right = parseInt(document.getElementById('right').value, 10);
+
+            if (isNaN(left) || isNaN(right) || left < 0 || right < 0) {
+                console.log('Error :(');
+                return;
+            }
+
+            let result;
+            switch (oper) {
+                case '+':
+                    result = left + right;
+                    break;
+                case '-':
+                    result = left - right;
+                    break;
+                case '*':
+                    result = left * right;
+                    break;
+                case '/':
+                    if (right === 0) {
+                        console.log(right)
+                        alert("It’s over 9000!");
+                        console.log("It’s over 9000!");
+                        return
+                    }
+                    result = left / right;
+                    break;
+                case '%':
+                    if (right === 0) {
+                        alert("It’s over 9000!");
+                        console.log("It’s over 9000!");
+                        return
+                    }
+                    result = left % right;
+                    break;
+            }
+            alert(result);
+            console.log(result);
+            } 
+
+        setInterval(function() {
+            alert('Please, use me...');
+        }, 30000);
+    </script>
+
+</body>
+</html>
