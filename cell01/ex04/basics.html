@@ -9,24 +9,44 @@
             background-color: pink;
             margin: 0;
             text-align: center;
+            justify-content: space-between;
         }
         h1 {
             color: white;
         }
+        img {
+            width: 400px;
+            height: 250px;
+        }
         footer {
-            position: fixed;
-            bottom: 0;
             text-align: right;
-            background-color: white;
-            height: 30px;
             width: 100%;
+        }
+        div {
+            display: flex;
+            justify-content: space-around;
+        }
+        div > div {
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
 <body>
-    <h1>Online $hopping</h1>
+    <h1>Online &#36;hopping</h1>
+    <div>
+        <div>
+            <img src="https://cdn.coinsbee.com/version2/dist/assets/img/brands/Shopee.png" alt="shopee">
+            <a href="https://shopee.co.th/" target="_blank">go to shoppe</a>
+        </div>
+        <div>
+            <img src="https://th.bing.com/th/id/OIP.KdH2ocLz9nXXMFa7E3iMBAHaEK?rs=1&pid=ImgDetMain" alt="lazada">
+            <a href="https://www.lazada.co.th/" target="_blank">go to lazada</a>
+        </div>
+    </div>
+    <hr>
     <footer>
-        © wil 2021
+        &copy; tsuriyar 2024
     </footer>
 </body>
 </html>
