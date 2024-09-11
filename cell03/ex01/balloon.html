@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .balloon {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            border-radius: 100%;
+        }
+    </style>
+    <title>balloon</title>
+</head>
+<body>
+    <div class="balloon" onclick = grow(this) onmouseout=shirnk(this)></div>
+    <script>
+        let i=0
+        let color = ['red','green','blue']
+        function grow(ele) {
+            i++;
+            if (i > 2) i = 0;
+            var width = parseInt(window.getComputedStyle(ele).width, 10);
+            width += 10
+            if (width > 420) width = 200;
+            ele.style.width = width + "px";
+            ele.style.height = width + "px";
+            ele.style.backgroundColor = color[i]
+        }
+
+        function shirnk(ele) {
+            i--;
+            if (i < 0) i = 2;
+            var width = parseInt(window.getComputedStyle(ele).width, 10);
+            if (width > 200 ) width -= 5
+            ele.style.width = width + "px";
+            ele.style.height = width + "px";
+            ele.style.backgroundColor = color[i]
+        }
+    </script>
+</body>
+</html>
