@@ -24,11 +24,26 @@
     <script>
         $(document).ready(function() {
             $('#calculate').click(function() {
+                for (let i=0;i < $('#left').val().length;i++){
+                    if (isNaN(parseInt($('#left').val().split("")[i], 10))){
+                        alert("Error :(");
+                        console.log('Error :(');
+                        return;
+                    }
+                }
+                for (let i=0;i < $('#right').val().length;i++){
+                    if (isNaN(parseInt($('#right').val().split("")[i], 10))){
+                        alert("Error :(");
+                        console.log('Error :(');
+                        return;
+                    }
+                }
                 const left = parseInt($('#left').val(), 10);
                 const oper = $('#oper').val();
                 const right = parseInt($('#right').val(), 10);
 
                 if (isNaN(left) || isNaN(right) || left < 0 || right < 0) {
+                    alert("Error :(");
                     console.log('Error :(');
                     return;
                 }
