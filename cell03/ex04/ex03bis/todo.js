@@ -1,42 +1,45 @@
-$(document).ready(function() {
-    $('#new-task').click(function() {
-        const task = prompt("Enter new task:");
-        if (task) {
-            const $taskDiv = $('<div class="task"></div>').text(task);
-            $taskDiv.click(function() {
-                if (confirm("Are you sure you want to delete this task?")) {
-                    $(this).remove();
-                    saveTasks();
-                }
-            });
-            $('#ft_list').prepend($taskDiv);
-            saveTasks();
-        }
-    });
+$(document).ready(function () {
+  function saveTDs() {
+    const tdArray = $("#ft_list .TD")
+      .map(function () {
+        return $(this).text();
+      })
+      .get();
+    str_array = JSON.stringify(tdArray);
+    en_str_array = encodeURIComponent(str_array);
+    document.cookie = `tds=${en_str_array}`;
+    console.log(document.cookie);
+  }
 
-    function saveTasks() {
-        const tasks = $('.task').map(function() {
-            return $(this).text();
-        }).get();
-        document.cookie = "tasks=" + encodeURIComponent(JSON.stringify(tasks));
+  function loadTDs() {
+    const cookies = document.cookie.split("=")[1];
+    console.log(cookies);
+    de_cookie = decodeURIComponent(cookies);
+    console.log(de_cookie);
+    if (de_cookie) {
+      const tdArray = JSON.parse(de_cookie);
+      tdArray.forEach((tdText) => {
+        const $TD = $("<div>").text(tdText).addClass("TD");
+        $("#ft_list").append($TD);
+      });
     }
+  }
 
-    function loadTasks() {
-        const cookies = document.cookie.split('=')[1];
-        console.log(JSON.parse(cookies))
-        const tasks = JSON.parse(cookies).reverse();
-        console.log(tasks)
-        tasks.forEach(task => {
-            const $taskDiv = $('<div class="task"></div>').text(task);
-            $taskDiv.click(function() {
-                if (confirm("Are you sure you want to delete this task?")) {
-                    $(this).remove();
-                    saveTasks();
-                }
-            });
-            $('#ft_list').prepend($taskDiv);
-        });
+  $("#btn").on("click", function () {
+    const TDM = prompt("Please enter your TD");
+    if (TDM && TDM.trim()) {
+      const $TD = $("<div>").text(TDM).addClass("TD");
+      $("#ft_list").prepend($TD);
+      saveTDs();
     }
+  });
 
-    loadTasks();
+  $(document).on("click", ".TD", function () {
+    if (confirm("Remove This TD?")) {
+      $(this).remove();
+      saveTDs();
+    }
+  });
+
+  loadTDs();
 });
