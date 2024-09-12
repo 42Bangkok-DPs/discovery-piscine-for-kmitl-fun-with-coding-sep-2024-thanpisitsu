@@ -1,6 +1,6 @@
 $(document).ready(function () {
   function saveTDs() {
-    const tdArray = $("#ft_list .TD")
+    const tdArray = $("#ft_list .task")
       .map(function () {
         return $(this).text();
       })
@@ -13,29 +13,27 @@ $(document).ready(function () {
 
   function loadTDs() {
     const cookies = document.cookie.split("=")[1];
-    console.log(cookies);
     de_cookie = decodeURIComponent(cookies);
-    console.log(de_cookie);
     if (de_cookie) {
       const tdArray = JSON.parse(de_cookie);
       tdArray.forEach((tdText) => {
-        const $TD = $("<div>").text(tdText).addClass("TD");
+        const $TD = $("<div>").text(tdText).addClass("task");
         $("#ft_list").append($TD);
       });
     }
   }
 
-  $("#btn").on("click", function () {
-    const TDM = prompt("Please enter your TD");
+  $("#new_task").on("click", function () {
+    const TDM = prompt("Enter new Task");
     if (TDM && TDM.trim()) {
-      const $TD = $("<div>").text(TDM).addClass("TD");
+      const $TD = $("<div>").text(TDM).addClass("task");
       $("#ft_list").prepend($TD);
       saveTDs();
     }
   });
 
-  $(document).on("click", ".TD", function () {
-    if (confirm("Remove This TD?")) {
+  $(document).on("click", ".task", function () {
+    if (confirm("Do you want to remove this task?")) {
       $(this).remove();
       saveTDs();
     }
